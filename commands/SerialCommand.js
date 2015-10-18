@@ -478,11 +478,20 @@ SerialCommand.prototype = extend(BaseCommand.prototype, {
             return cb(security + '\n');
         });
 
+        st.addTrigger('Security Cipher 1=AES, 2=TKIP, 3=AES+TKIP:', function (cb) {
+            var cipherType = 3;
+            return cb(cipherType + '\n');
+        });
+
         st.addTrigger('Password:', function (cb) {
             return cb(wifiConfig.password + '\n');
         });
 
         st.addTrigger('Spark <3 you!', function () {
+            wifiDone.resolve();
+        });
+
+        st.addTrigger('Particle <3 you!', function () {
             wifiDone.resolve();
         });
 
